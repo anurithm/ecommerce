@@ -13,7 +13,7 @@ This project is an advanced e-commerce product recommendation platform that goes
 - **LLM Integration**: OpenRouter API for generating conversational product explanations
 
 ## 🚀 Live Demo
-You can view the live application here: *[Insert Streamlit Live Demo URL Here]*
+https://ecommerce--recommendation-system.streamlit.app/
 
 
 ## 🌟 Features
