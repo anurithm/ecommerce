@@ -18,7 +18,31 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-BACKEND_URL = "http://localhost:8000"
+# ── Auto-start Backend for Streamlit Deployment ───────────────────────────────
+import os
+import sys
+import socket
+import subprocess
+
+def start_backend_if_needed():
+    """Starts the FastAPI backend if it's not already running on port 8000."""
+    def is_port_in_use(port):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            return s.connect_ex(('localhost', port)) == 0
+
+    if not is_port_in_use(8000):
+        print("Backend not found on port 8000. Starting it in the background...")
+        env = os.environ.copy()
+        env["PYTHONPATH"] = os.getcwd()
+        subprocess.Popen(
+            [sys.executable, "-m", "uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"],
+            env=env
+        )
+        time.sleep(3)
+
+start_backend_if_needed()
+
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
 
 EXAMPLE_QUERIES = [
     "Affordable Sony headphones for music under ₹5000",
