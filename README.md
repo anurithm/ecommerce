@@ -77,6 +77,15 @@ ecommerce/
 └── README.md
 ```
 
+## Running commands
+1) Create/activate the virtual environment
+     python3 -m venv .venv
+     source .venv/bin/activate
+2) Install the requirements
+      pip install -r requirements.txt
+3) Check the Streamlit app
+      streamlit run frontend/app.py
+
 ## 🧪 Testing
 
 The codebase includes comprehensive unit and integration tests covering natural language extraction, hybrid scoring logic, product parsing, and API endpoints.
